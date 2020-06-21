@@ -1,0 +1,53 @@
+    
+    <div class="container" >
+      <div id="modal_users">
+        <fieldset class="modal_content">
+          <p class="title_modal_users">Read/Show</p>
+          <p> Search :
+                    <input type="text" />
+          </p>
+          <br />
+          <table class="table_content">
+            <tbody>
+              <tr class="table_user_title">
+                <th>Name</th>
+                <th>Family</th>
+                <th>Birthday</th>
+                <th>Item</th>
+                <th>Actions</th>
+              </tr>
+              <tr *ngFor="let user of users; let i = index">
+                <td>{{user.name}}</td>
+                <td>{{user.family}}</td>
+                <td>{{user.birthday}}</td>
+                <td>{{user.itemNum}}</td>
+                <td class="table_user_button">
+                  <input class="button" (click)="delete(i)" type="button" value="Delete" />
+                  <input class="button" (click)="setEditUser(i)" type="button" value="Edit" />
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <input class="button" (click)="toggleModal()" [hidden]="editingIndex===undefined" type="button" value="close"  />
+        </fieldset>
+      </div>
+      <fieldset class="form_user">
+        <legend>Add/Edit</legend>
+        <p class="form_input_title">Name :
+                  <input class="form_input" [(ngModel)]="name" type="text" />
+        </p>
+        <p class="form_input_title">Family :
+                  <input class="form_input" [(ngModel)]="family" type="text" />
+        </p>
+        <p class="form_input_title">Birthday :
+                  <input class="form_input" [(ngModel)]="birthday" type="date" />
+        </p>
+        <p class="form_input_title">Item :
+                  <input class="form_input" [(ngModel)]="itemNum" type="number" />
+        </p>
+        <input class="button" (click)="add()" [hidden]="editingIndex!==undefined" type="button" value="Add"  />
+        <input class="button" (click)="edit()" [hidden]="editingIndex===undefined" type="button" value="update" />
+        <input class="button" (click)="cancel()" [hidden]="editingIndex===undefined" type="button" value="cancel"  />
+        <input class="button" (click)="toggleModal()" [hidden]="editingIndex===undefined" type="button" value="open"  />
+      </fieldset>
+    </div>
